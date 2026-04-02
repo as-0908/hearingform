@@ -38,7 +38,7 @@ export function Step3Purpose({ data, onChange }: Props) {
       <FormField
         label="ターゲット層を教えてください"
         required
-        hint="性別・年齢・職業など、なるべく詳細にお願いします"
+        hint="性別・年齢・職業など"
       >
         <TextArea
           value={data.targetAudience}
