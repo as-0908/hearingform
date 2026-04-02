@@ -25,6 +25,7 @@ var HEADERS = [
   "提供可能な素材",
   "参考サイトURL",
   "既存サイトURL",
+  "納品形式",
   "サーバー設定",
   "サーバー情報",
   "ドメイン設定",
@@ -57,6 +58,15 @@ function getHelpLabel(value) {
     case "yes": return "必要";
     case "no": return "必要でない";
     case "consult": return "分からないので相談したい";
+    default: return "";
+  }
+}
+
+function getDeliveryLabel(value) {
+  switch (value) {
+    case "file": return "ファイル納品（お客様側でアップロード）";
+    case "deploy": return "サーバーへの公開まで対応希望";
+    case "consult": return "相談したい";
     default: return "";
   }
 }
@@ -109,6 +119,7 @@ function doPost(e) {
       (data.materials || []).join("、"),
       data.referenceUrls || "",
       data.existingSiteUrl || "",
+      getDeliveryLabel(data.deliveryMethod),
       getHelpLabel(data.serverHelp),
       data.serverInfo || "",
       getHelpLabel(data.domainHelp),

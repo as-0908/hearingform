@@ -36,8 +36,11 @@ function validateStep(step: number, data: FormData): string | null {
       if (!data.referenceUrls) return "参考サイトのURLをご記入ください";
       return null;
     case 5:
-      if (!data.serverHelp) return "サーバー設定について選択してください";
-      if (!data.domainHelp) return "ドメイン設定について選択してください";
+      if (!data.deliveryMethod) return "納品形式を選択してください";
+      if (data.deliveryMethod === "deploy" && !data.serverHelp)
+        return "サーバー設定について選択してください";
+      if (data.deliveryMethod === "deploy" && !data.domainHelp)
+        return "ドメイン設定について選択してください";
       if (!data.schedule) return "スケジュールをご記入ください";
       if (!data.companyName) return "会社名をご記入ください";
       if (!data.contactName) return "ご担当者名をご記入ください";

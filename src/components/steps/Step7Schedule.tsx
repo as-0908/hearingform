@@ -17,54 +17,75 @@ export function Step7Schedule({ data, onChange }: Props) {
   return (
     <div className="space-y-2">
       <FormField
-        label="サーバー設定にお手伝いが必要ですか？"
+        label="納品形式について"
         required
+        hint="完成したサイトデータのお届け方法をお選びください"
       >
         <RadioGroup
-          name="serverHelp"
-          value={data.serverHelp}
-          onChange={(value) => onChange({ serverHelp: value })}
+          name="deliveryMethod"
+          value={data.deliveryMethod}
+          onChange={(value) => onChange({ deliveryMethod: value })}
           options={[
-            { value: "yes", label: "必要" },
-            { value: "no", label: "必要でない" },
+            { value: "file", label: "ファイル納品（zip等）- お客様側でサーバーにアップロード" },
+            { value: "deploy", label: "サーバーへの公開まで対応してほしい" },
             { value: "consult", label: "分からないので相談したい" },
           ]}
         />
-        {data.serverHelp === "no" && (
-          <div className="mt-3">
-            <TextInput
-              value={data.serverInfo}
-              onChange={(value) => onChange({ serverInfo: value })}
-              placeholder="サーバー情報をご入力ください（例：エックスサーバー、さくらサーバー等）"
-            />
-          </div>
-        )}
       </FormField>
 
-      <FormField
-        label="ドメイン設定にお手伝いが必要ですか？"
-        required
-      >
-        <RadioGroup
-          name="domainHelp"
-          value={data.domainHelp}
-          onChange={(value) => onChange({ domainHelp: value })}
-          options={[
-            { value: "yes", label: "必要" },
-            { value: "no", label: "必要でない" },
-            { value: "consult", label: "分からないので相談したい" },
-          ]}
-        />
-        {data.domainHelp === "no" && (
-          <div className="mt-3">
-            <TextInput
-              value={data.domainInfo}
-              onChange={(value) => onChange({ domainInfo: value })}
-              placeholder="ドメイン情報をご入力ください（例：example.com）"
+      {data.deliveryMethod === "deploy" && (
+        <>
+          <FormField
+            label="サーバーの設定はお済みですか？"
+            required
+          >
+            <RadioGroup
+              name="serverHelp"
+              value={data.serverHelp}
+              onChange={(value) => onChange({ serverHelp: value })}
+              options={[
+                { value: "yes", label: "サーバーの用意・設定をお願いしたい" },
+                { value: "no", label: "サーバーは用意済み" },
+                { value: "consult", label: "分からないので相談したい" },
+              ]}
             />
-          </div>
-        )}
-      </FormField>
+            {data.serverHelp === "no" && (
+              <div className="mt-3">
+                <TextInput
+                  value={data.serverInfo}
+                  onChange={(value) => onChange({ serverInfo: value })}
+                  placeholder="サーバー情報をご入力ください（例：エックスサーバー、さくらサーバー等）"
+                />
+              </div>
+            )}
+          </FormField>
+
+          <FormField
+            label="ドメインの設定はお済みですか？"
+            required
+          >
+            <RadioGroup
+              name="domainHelp"
+              value={data.domainHelp}
+              onChange={(value) => onChange({ domainHelp: value })}
+              options={[
+                { value: "yes", label: "ドメインの取得・設定をお願いしたい" },
+                { value: "no", label: "ドメインは取得済み" },
+                { value: "consult", label: "分からないので相談したい" },
+              ]}
+            />
+            {data.domainHelp === "no" && (
+              <div className="mt-3">
+                <TextInput
+                  value={data.domainInfo}
+                  onChange={(value) => onChange({ domainInfo: value })}
+                  placeholder="ドメイン情報をご入力ください（例：example.com）"
+                />
+              </div>
+            )}
+          </FormField>
+        </>
+      )}
 
       <FormField
         label="スケジュール感を教えてください"

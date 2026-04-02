@@ -26,7 +26,8 @@ export interface FormData {
   referenceUrls: string;
   existingSiteUrl: string;
 
-  // Step 7: サーバー・スケジュール
+  // Step 7: 納品・サーバー・スケジュール
+  deliveryMethod: string;
   serverHelp: string;
   serverInfo: string;
   domainHelp: string;
@@ -59,6 +60,7 @@ export const initialFormData: FormData = {
   materials: [],
   referenceUrls: "",
   existingSiteUrl: "",
+  deliveryMethod: "",
   serverHelp: "",
   serverInfo: "",
   domainHelp: "",
