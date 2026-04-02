@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: ["claude/client-inquiry-form-UWraz", "main"]
   workflow_dispatch:
 
 permissions:
