@@ -98,11 +98,16 @@ export default function Home() {
         body: JSON.stringify(formData),
       });
 
-      if (!res.ok) throw new Error("送信に失敗しました");
+      if (!res.ok) {
+        const errData = await res.json().catch(() => null);
+        console.error("Submit error:", errData);
+        throw new Error(errData?.error || "送信に失敗しました");
+      }
 
       router.push("/complete");
-    } catch {
-      setError("送信中にエラーが発生しました。もう一度お試しください。");
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "送信中にエラーが発生しました";
+      setError(`${message}。もう一度お試しください。`);
     } finally {
       setIsSubmitting(false);
     }
