@@ -6,22 +6,15 @@ export interface FormData {
   pageCount: string;
   background: string;
 
-  // Step 2: 企業情報
-  companyPhilosophy: string;
-  strengths: string;
-  competitors: string;
-
-  // Step 3: 目的・ターゲット
+  // Step 2: 目的・ターゲット
   purposes: string[];
   purposeOther: string;
   targetAudience: string;
 
-  // Step 4: サイト概要・機能
+  // Step 3: サイト概要
   siteOverview: string;
-  features: string[];
-  featureOther: string;
 
-  // Step 5: デザイン
+  // Step 4: デザイン
   impressions: string[];
   impressionOther: string;
   designTaste: string[];
@@ -54,15 +47,10 @@ export const initialFormData: FormData = {
   siteType: "",
   pageCount: "",
   background: "",
-  companyPhilosophy: "",
-  strengths: "",
-  competitors: "",
   purposes: [],
   purposeOther: "",
   targetAudience: "",
   siteOverview: "",
-  features: [],
-  featureOther: "",
   impressions: [],
   impressionOther: "",
   designTaste: [],
@@ -85,9 +73,8 @@ export const initialFormData: FormData = {
 
 export const STEP_TITLES = [
   "ご依頼の内容",
-  "企業・サービス情報",
   "目的・ターゲット",
-  "サイト概要・機能",
+  "サイト概要",
   "デザイン",
   "素材・参考サイト",
   "サーバー・スケジュール・連絡先",
@@ -98,15 +85,6 @@ export const PURPOSE_OPTIONS = [
   "認知拡大",
   "お問い合わせを増やしたい",
   "予約数・販売数を増やしたい",
-];
-
-export const FEATURE_OPTIONS = [
-  "ブログ、お知らせ更新機能",
-  "商品情報の更新機能",
-  "商品販売と決済機能",
-  "お問い合わせフォーム",
-  "予約システム",
-  "SNSとの連携",
 ];
 
 export const IMPRESSION_OPTIONS = [

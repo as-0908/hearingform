@@ -1,12 +1,7 @@
 "use client";
 
-import { FormData, FEATURE_OPTIONS } from "@/types/form";
-import {
-  FormField,
-  CheckboxGroup,
-  TextInput,
-  TextArea,
-} from "@/components/ui/FormField";
+import { FormData } from "@/types/form";
+import { FormField, TextArea } from "@/components/ui/FormField";
 
 interface Props {
   data: FormData;
@@ -26,24 +21,6 @@ export function Step4SiteOverview({ data, onChange }: Props) {
           placeholder="例：トップページ、サービス紹介、料金プラン、お客様の声、会社概要、お問い合わせ..."
           rows={5}
         />
-      </FormField>
-
-      <FormField
-        label="サイトに追加したい機能"
-        hint="複数選択可"
-      >
-        <CheckboxGroup
-          options={FEATURE_OPTIONS}
-          selected={data.features}
-          onChange={(features) => onChange({ features })}
-        />
-        <div className="mt-3">
-          <TextInput
-            value={data.featureOther}
-            onChange={(value) => onChange({ featureOther: value })}
-            placeholder="その他の機能があればご記入ください"
-          />
-        </div>
       </FormField>
     </div>
   );

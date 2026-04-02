@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { FormData, initialFormData, STEP_TITLES } from "@/types/form";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { Step1Request } from "@/components/steps/Step1Request";
-import { Step2Company } from "@/components/steps/Step2Company";
 import { Step3Purpose } from "@/components/steps/Step3Purpose";
 import { Step4SiteOverview } from "@/components/steps/Step4SiteOverview";
 import { Step5Design } from "@/components/steps/Step5Design";
@@ -22,26 +21,21 @@ function validateStep(step: number, data: FormData): string | null {
       if (!data.background) return "ご依頼の背景をご記入ください";
       return null;
     case 1:
-      if (!data.companyPhilosophy) return "企業理念をご記入ください";
-      if (!data.strengths) return "強み・特徴をご記入ください";
-      if (!data.competitors) return "競合情報をご記入ください";
-      return null;
-    case 2:
       if (data.purposes.length === 0) return "目的を1つ以上選択してください";
       if (!data.targetAudience) return "ターゲット層をご記入ください";
       return null;
-    case 3:
+    case 2:
       return null;
-    case 4:
+    case 3:
       if (data.impressions.length === 0)
         return "与えたい印象を1つ以上選択してください";
       if (data.designTaste.length === 0)
         return "デザインテイストを1つ以上選択してください";
       return null;
-    case 5:
+    case 4:
       if (!data.referenceUrls) return "参考サイトのURLをご記入ください";
       return null;
-    case 6:
+    case 5:
       if (!data.serverHelp) return "サーバー設定について選択してください";
       if (!data.domainHelp) return "ドメイン設定について選択してください";
       if (!data.schedule) return "スケジュールをご記入ください";
@@ -124,16 +118,14 @@ export default function Home() {
       case 0:
         return <Step1Request {...props} />;
       case 1:
-        return <Step2Company {...props} />;
-      case 2:
         return <Step3Purpose {...props} />;
-      case 3:
+      case 2:
         return <Step4SiteOverview {...props} />;
-      case 4:
+      case 3:
         return <Step5Design {...props} />;
-      case 5:
+      case 4:
         return <Step6Materials {...props} />;
-      case 6:
+      case 5:
         return <Step7Schedule {...props} />;
       default:
         return null;
@@ -145,14 +137,9 @@ export default function Home() {
       <div className="w-full max-w-2xl">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
             ヒアリングフォーム
           </h1>
-          <p className="text-sm text-gray-500 leading-relaxed">
-            詳細にご記入いただくと、より良いサイト作りに役立ちます。
-            <br className="hidden sm:block" />
-            現段階で分からない箇所は飛ばしていただいてもかまいません。
-          </p>
         </div>
 
         {/* Progress */}
