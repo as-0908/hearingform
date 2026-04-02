@@ -59,7 +59,7 @@ export function Step5Design({ data, onChange }: Props) {
 
       <FormField
         label="サイトのイメージカラー"
-        hint="ご希望の色を選んでください（複数選択可）"
+        hint="クリックして色を選択"
       >
         <div className="flex flex-wrap gap-3 items-center">
           {data.imageColors.map((color, i) => (
