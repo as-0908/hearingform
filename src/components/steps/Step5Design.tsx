@@ -59,13 +59,46 @@ export function Step5Design({ data, onChange }: Props) {
 
       <FormField
         label="サイトのイメージカラー"
-        hint="ブランドカラーやご希望の色があれば教えてください"
+        hint="ご希望の色を選んでください（複数選択可）"
       >
-        <TextInput
-          value={data.imageColor}
-          onChange={(value) => onChange({ imageColor: value })}
-          placeholder="例：ネイビー × ホワイト、暖色系、企業ロゴのブルーに合わせたい..."
-        />
+        <div className="flex flex-wrap gap-3 items-center">
+          {data.imageColors.map((color, i) => (
+            <div key={i} className="flex items-center gap-1.5">
+              <input
+                type="color"
+                value={color}
+                onChange={(e) => {
+                  const updated = [...data.imageColors];
+                  updated[i] = e.target.value;
+                  onChange({ imageColors: updated });
+                }}
+                className="w-10 h-10 rounded-lg border border-gray-200 cursor-pointer p-0.5"
+              />
+              <button
+                type="button"
+                onClick={() =>
+                  onChange({
+                    imageColors: data.imageColors.filter((_, idx) => idx !== i),
+                  })
+                }
+                className="text-gray-400 hover:text-error text-lg leading-none"
+                aria-label="削除"
+              >
+                &times;
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={() =>
+              onChange({ imageColors: [...data.imageColors, "#2563eb"] })
+            }
+            className="w-10 h-10 rounded-lg border-2 border-dashed border-gray-300 hover:border-primary flex items-center justify-center text-gray-400 hover:text-primary transition-colors"
+            aria-label="色を追加"
+          >
+            +
+          </button>
+        </div>
       </FormField>
     </div>
   );

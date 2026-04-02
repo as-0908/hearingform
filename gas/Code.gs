@@ -93,7 +93,7 @@ function doPost(e) {
       data.siteOverview || "",
       joinArray(data.impressions, data.impressionOther),
       joinArray(data.designTaste, data.designTasteOther),
-      data.imageColor || "",
+      (data.imageColors || []).join(", "),
       (data.materials || []).join("、"),
       data.referenceUrls || "",
       data.existingSiteUrl || "",

@@ -19,7 +19,7 @@ export interface FormData {
   impressionOther: string;
   designTaste: string[];
   designTasteOther: string;
-  imageColor: string;
+  imageColors: string[];
 
   // Step 6: 素材・参考サイト
   materials: string[];
@@ -55,7 +55,7 @@ export const initialFormData: FormData = {
   impressionOther: "",
   designTaste: [],
   designTasteOther: "",
-  imageColor: "",
+  imageColors: [],
   materials: [],
   referenceUrls: "",
   existingSiteUrl: "",
