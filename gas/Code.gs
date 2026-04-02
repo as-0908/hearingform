@@ -67,6 +67,12 @@ function joinArray(arr, extra) {
   return items.join("、");
 }
 
+function doGet() {
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: "ok", message: "ヒアリングフォームAPI" }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
 function doPost(e) {
   try {
     var data = JSON.parse(e.postData.contents);
