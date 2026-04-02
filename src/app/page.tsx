@@ -98,13 +98,17 @@ export default function Home() {
 
     setIsSubmitting(true);
     try {
-      const res = await fetch("/api/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (!res.ok) throw new Error("送信に失敗しました");
+      const scriptUrl = process.env.NEXT_PUBLIC_GAS_URL;
+      if (scriptUrl) {
+        await fetch(scriptUrl, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain" },
+          body: JSON.stringify(formData),
+        });
+      } else {
+        console.log("NEXT_PUBLIC_GAS_URL is not set. Form data:", formData);
+      }
 
       router.push("/complete");
     } catch {
