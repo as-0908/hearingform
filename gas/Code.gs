@@ -75,7 +75,13 @@ function doGet() {
 
 function doPost(e) {
   try {
-    var data = JSON.parse(e.postData.contents);
+    var raw = e.postData ? e.postData.contents : e.parameter.data;
+    if (!raw) {
+      return ContentService
+        .createTextOutput(JSON.stringify({ error: "No data received" }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+    var data = JSON.parse(raw);
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
     // ヘッダーがなければ追加

@@ -11,13 +11,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const body = await request.text();
+    const body = await request.json();
 
-    await fetch(gasUrl, {
+    const gasRes = await fetch(gasUrl, {
       method: "POST",
-      headers: { "Content-Type": "text/plain" },
-      body,
+      body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" },
+      redirect: "follow",
     });
+
+    const text = await gasRes.text();
+    console.log("GAS response:", gasRes.status, text);
 
     return NextResponse.json({ success: true });
   } catch (error) {
